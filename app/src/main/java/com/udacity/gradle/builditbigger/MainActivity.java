@@ -5,9 +5,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
-import com.gradle.Jokes;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -42,9 +39,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view) {
-        Jokes jokes = new Jokes();
-        String aJoke = jokes.tellAJoke();
-        Toast.makeText(this, aJoke, Toast.LENGTH_SHORT).show();
+        EndpointAsyncTask endpointAsyncTask = new EndpointAsyncTask(this);
+        endpointAsyncTask.execute();
     }
 
 
