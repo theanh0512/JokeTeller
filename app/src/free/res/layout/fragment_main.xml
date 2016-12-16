@@ -13,16 +13,16 @@
         android:id="@+id/instructions_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/primary_text"
         android:text="@string/instructions" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <ProgressBar
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/instructions_text_view"
-        android:onClick="tellJoke"
-        android:text="@string/button_text"
-
-        />
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tellJoke_button" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -32,5 +32,30 @@
         android:layout_centerHorizontal="true"
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id"></com.google.android.gms.ads.AdView>
+
+    <Button
+        android:id="@+id/tellJoke_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:textColor="@color/primary_text"
+        android:textStyle="bold"
+        android:onClick="tellJoke"
+        android:text="@string/button_text"
+        android:layout_below="@+id/instructions_text_view"
+        android:layout_alignLeft="@+id/adView"
+        android:layout_alignStart="@+id/adView" />
+
+    <Button
+        android:id="@+id/showAd_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:textColor="@color/primary_text"
+        android:textStyle="bold"
+        android:text="@string/show_ad_button"
+        android:layout_above="@+id/progressBar"
+        android:layout_alignRight="@+id/adView"
+        android:layout_alignEnd="@+id/adView" />
 
 </RelativeLayout>

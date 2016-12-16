@@ -3,6 +3,8 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -22,6 +24,7 @@ public class EndpointAsyncTask extends AsyncTask<Integer, Integer, String> {
     public static boolean updated = false;
     private static MyApi myApiService = null;
     private Context context;
+    String data;
 
     public EndpointAsyncTask(Context context) {
         this.context = context;
@@ -44,14 +47,24 @@ public class EndpointAsyncTask extends AsyncTask<Integer, Integer, String> {
                         }
                     });
             // end options for devappserver
-
+            publishProgress(50);
             myApiService = builder.build();
         }
-
         try {
-            return myApiService.getJoke().execute().getData();
+            data = myApiService.getJoke().execute().getData();
+            publishProgress(90);
         } catch (IOException e) {
             return e.getMessage();
+        }
+        return data;
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+        if(MainActivity.progressBar!=null){
+            MainActivity.progressBar.setVisibility(View.VISIBLE);
+            MainActivity.progressBar.setProgress(values[0]);
         }
     }
 
@@ -61,5 +74,6 @@ public class EndpointAsyncTask extends AsyncTask<Integer, Integer, String> {
         Intent intent = new Intent(context, JokeActivity.class);
         intent.putExtra(JokeActivity.JOKE_KEY, result);
         context.startActivity(intent);
+        MainActivity.progressBar.setVisibility(View.INVISIBLE);
     }
 }

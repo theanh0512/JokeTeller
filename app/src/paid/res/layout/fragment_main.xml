@@ -12,13 +12,26 @@
         android:id="@+id/instructions_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/primary_text"
         android:text="@string/instructions" />
 
     <Button
+        android:id="@+id/tellJoke_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/instructions_text_view"
         android:onClick="tellJoke"
+        android:background="@color/colorAccent"
+        android:textColor="@color/primary_text"
+        android:textStyle="bold"
         android:text="@string/button_text" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tellJoke_button" />
 
 </RelativeLayout>
